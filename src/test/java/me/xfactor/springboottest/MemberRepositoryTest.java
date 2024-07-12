@@ -56,4 +56,14 @@ class MemberRepositoryTest {
 
         assertThat(memberRepository.findAll().size()).isEqualTo(2);
     }
+
+    @Sql("inserty-members.sql")
+    @Test
+    void updateMember() {
+        Member member = memberRepository.findById(2L).get();
+
+        member.changeName("BC");
+
+        assertThat(memberRepository.findById(2L).get().getName()).isEqualTo("BC");
+    }
 }
